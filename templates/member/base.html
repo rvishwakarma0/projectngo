@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Base</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <ul class="nav navbar-nav">
+          {% if user.is_authenticated %}
+              <li><a class="navbar-brand" href="{% url 'member:index' %}">Dashboard</a></li>
+              <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Student</a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="{%url 'student:student_registration'%}">Register Student</a>
+                  <a class="dropdown-item" href="{%url 'student:student_details'%}">View Student Details</a>
+                  <a class="dropdown-item" href="#">Edit Student Details</a>
+                </div>
+              </li>
+              <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Attendance</a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="{% url 'attendance:mark_attendance' %}">Mark Attendance</a>
+                  <a class="dropdown-item" href="{%url 'attendance:view_attendance' %}">View Attendance</a>
+                  <a class="dropdown-item" href="#">Edit Attendace</a>
+                </div>
+              </li>
+              <li><a class="navbar-link" href="{% url 'member:logout' %}">Logout</a></li>
+          {% else %}
+              <li><a class="navbar-link" href="{% url 'member:login' %}">Login</a></li>
+              <li><a class="navbar-link" href="{% url 'member:register' %}">Register</a></li>
+          {% endif %}
+</ul>
+      </div>
+    </nav>
+    <div class="container">
+    {% block body_block %}
+    {% endblock %}
+    </div>
+  </body>
+</html>

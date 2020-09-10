@@ -1,0 +1,15 @@
+{% extends "member/base.html" %}
+{% block body_block %}
+<div class="container">
+  <div class="jumbotron">
+
+    {% if user.is_authenticated %}
+        <h2>Hello {{ user.username }}</h2><br><br>
+        <p> this part is being developed and lets see what will come under this section </p>
+
+    {% else %}
+        <p>You need to Register or Login</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

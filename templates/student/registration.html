@@ -1,0 +1,13 @@
+{% extends "member/base.html" %}
+{% block body_block %}
+<h1>student registration</h1>
+<div class="container my-12">
+    <div class="jumbotron" color="white ">
+    <form method="post">
+        {{ forms.as_p }}
+        {% csrf_token %}
+        <input type="submit" class="btn btn-primary"value="submit">
+    </form>
+    </div>
+</div>
+{% endblock %}

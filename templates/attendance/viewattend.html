@@ -1,0 +1,38 @@
+{% extends "member/base.html" %}
+{% block body_block %}
+<div class="conatiner">
+  <form method="post">
+      {% csrf_token %}
+      start date<input type="date" name="sdate"><br>
+      end date<input type="date" name="ldate"><br>
+      <input type="submit">
+</div>
+<div class="container">
+  {% if data %}
+        <table class="table table-hover table-bordered">
+          <thead class="thead-dark">
+           <tr>
+               <th scope="col">Date</th>
+               <th scope="col">rollno</th>
+               <th scope="col">name</th>
+               <th scope="col">status</th>
+           </tr>
+          </thead>
+            {% for i in data %}
+                    <tbody>
+                   <tr>
+                       <td>{{i.date}}</td>
+                       <td>{{i.roll.rollno}}</td>
+                       <td>{{ i.roll.fname }} {{ i.roll.lname }}</td>
+                       {%if i.status %}
+                       <td>Present</td>
+                       {% else %}
+                       <td>Absent</td>
+                       {% endif %}
+                   </tr>
+                    </tbody>
+             {% endfor %}
+ {% else %}
+            <p>no records</p>
+{% endif %}
+{% endblock %}
